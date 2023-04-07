@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=".\css\program.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@500&display=swap" rel="stylesheet"> 
+    <title>Document</title>
+</head>
+<body>
+    <!-- Title -->
+    <h1>Shortest Path With UCS and A*</h1>
+    <!-- Box 1: input file dan pilih algoritma -->
+    <div class="box1">
+        <h2>Input File:</h2>
+        <h2>Algoritma:</h2>
+    </div>
+    <!-- Box 2: pembatas -->
+    <div class="box2"></div>
+    <!-- Box 3: hasil pemetaan -->
+    <div class="box3"></div>
+    <!-- Box 4: informasi -->
+    <div class="box4"></div>
+    <!-- Tulisan Menu Input -->
+    <div class="menu">
+        <form action="/action_page.php">
+            <input type="file" id="myfile" name="myfile"><br><br>
+        <br><br><br><br>
+        <div class="radio">
+            <input type="radio" id="ucs" name="algoritma" value="ucs">
+            <label for="ucs">UCS</label><br>
+            <br>
+            <input type="radio" id="astar" name="algoritma" value="astar">
+            <label for="astar">A*</label><br>
+            <br>
+        </div>
+        <div class="submit">
+            <button class="submit-button" type="button">Submit</button>
+        </div>
+    </div>
+    <!-- Tulisan Menu Hasil -->
+    <div class="hasil">
+        <h3>Rute lintasan:</h3>
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <h3>Jarak lintasan:</h3>
+        <h3>Banyak rute yang dilewati:</h3>
+        <h3>Execution time:</h3>
+    </div>
+    <!-- Box 5: informasi rute lintasan -->
+    <div class="box5"></div>
+</body>
+</html>

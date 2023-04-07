@@ -1,0 +1,112 @@
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 300%;
+    text-align: center;
+    margin-top: 55px;
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 35px;
+    margin-top: 15px;
+    line-height: 100px;
+}
+
+.box1 {
+    background-color: rgb(255, 255, 255, 0.7);
+    border-radius: 60px;
+    position: absolute;
+    top: 170px;
+    left: 50px;
+    width: 320px;
+    height: 500px;
+}
+
+.box2 {
+    background-color: black;
+    position: absolute;
+    top: 170px;
+    left: 420px;
+    width: 10px;
+    height: 500px;
+}
+
+.box3 {
+    background-color: rgb(255, 255, 255, 0.7);
+    border-radius: 20px;
+    position: absolute;
+    top: 170px;
+    left: 480px;
+    width: 600px;
+    height: 500px;
+}
+
+.box4 {
+    background-color: rgb(255, 255, 255, 0.7);
+    border-radius: 20px;
+    position: absolute;
+    top: 170px;
+    left: 1130px;
+    width: 350px;
+    height: 500px;
+}
+
+.menu {
+    position: absolute;
+    top: 285px;
+    left: 85px;
+}
+  
+.radio{
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.submit{
+    position: absolute;
+    top: 250px;
+    left: 40px;
+}
+
+.submit-button {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 40px;
+    cursor: pointer;
+}
+  
+.submit-button:hover {
+    background-color: darkgreen;
+}
+
+.hasil {
+    position: absolute;
+    top: 185px;
+    left: 1160px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.box5{
+    background-color: rgba(64, 227, 58, 0.7);
+    border-radius: 20px;
+    position: absolute;
+    top: 245px;
+    left: 1160px;
+    width: 292px;
+    height: 255px;
+}
