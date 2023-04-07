@@ -1,8 +1,11 @@
-package main
+package solver
 
 import (
 	"fmt"
 )
+
+type Solver struct {
+}
 
 func solveUCS() {
 	fmt.Println("huhuhu UCS")
