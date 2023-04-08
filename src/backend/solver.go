@@ -11,22 +11,22 @@ type Solver struct {
 	duration time.Duration
 }
 
-func (s Solver) solveUCS(g Graph, startVKey string, endVKey string) {
+func (s Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
 	fmt.Println("huhuhu UCS")
 }
 
-func (s Solver) solveAStar(g Graph, startVKey string, endVKey string) {
+func (s Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
 	fmt.Println("aaaaa AStar")
 }
 
-func (s Solver) startTime() {
+func (s Solver) StartTime() {
 	s.start = time.Now()
 }
 
-func (s Solver) stopTime() {
+func (s Solver) StopTime() {
 	s.duration = time.Since(s.start)
 }
 
-func isSolution(r Route, endVKey string) bool {
+func IsSolution(r Route, endVKey string) bool {
 	return r.buffer[r.nVertex-1].key == endVKey
 }

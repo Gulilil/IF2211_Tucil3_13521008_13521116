@@ -19,17 +19,17 @@ type Graph struct {
 	edges    []*Edge
 }
 
-func (g *Graph) addVertex(k string) {
+func (g *Graph) AddVertex(k string) {
 	v := Vertex{
 		key: k,
 	}
-	if !isContainVertex(g.vertices, v) {
+	if !IsContainVertex(g.vertices, v) {
 		g.vertices = append(g.vertices, &v)
 		g.nVertex++
 	}
 }
 
-func (g *Graph) addEdge(k1 string, k2 string, w int) {
+func (g *Graph) AddEdge(k1 string, k2 string, w int) {
 	v1 := Vertex{
 		key: k1,
 	}
@@ -41,13 +41,13 @@ func (g *Graph) addEdge(k1 string, k2 string, w int) {
 		endVertex:   v2,
 		weight:      w,
 	}
-	if !isContainEdge(g.edges, e) {
+	if !IsContainEdge(g.edges, e) {
 		g.edges = append(g.edges, &e)
 		g.nEdge++
 	}
 }
 
-func (g *Graph) getVertex(k string) *Vertex {
+func (g *Graph) GetVertex(k string) *Vertex {
 	for i := 0; i < g.nVertex; i++ {
 		if g.vertices[i].key == k {
 			return g.vertices[i]
@@ -56,27 +56,27 @@ func (g *Graph) getVertex(k string) *Vertex {
 	return nil
 }
 
-func (g *Graph) getEdgeWithStartV(startV Vertex) []*Edge {
+func (g *Graph) GetEdgeWithStartV(startV Vertex) []*Edge {
 	result := []*Edge{}
 	for i := 0; i < g.nEdge; i++ {
-		if isSameVertex(g.edges[i].startVertex, startV) {
+		if IsSameVertex(g.edges[i].startVertex, startV) {
 			result = append(result, g.edges[i])
 		}
 	}
 	return result
 }
 
-func (g *Graph) getEdgeWithEndV(endV Vertex) []*Edge {
+func (g *Graph) GetEdgeWithEndV(endV Vertex) []*Edge {
 	result := []*Edge{}
 	for i := 0; i < g.nEdge; i++ {
-		if isSameVertex(g.edges[i].endVertex, endV) {
+		if IsSameVertex(g.edges[i].endVertex, endV) {
 			result = append(result, g.edges[i])
 		}
 	}
 	return result
 }
 
-func isContainVertex(vertices []*Vertex, vertex Vertex) bool {
+func IsContainVertex(vertices []*Vertex, vertex Vertex) bool {
 	for i := 0; i < len(vertices); i++ {
 		if vertices[i].key == vertex.key {
 			return true
@@ -85,7 +85,7 @@ func isContainVertex(vertices []*Vertex, vertex Vertex) bool {
 	return false
 }
 
-func isContainEdge(edges []*Edge, edge Edge) bool {
+func IsContainEdge(edges []*Edge, edge Edge) bool {
 	for i := 0; i < len(edges); i++ {
 		if edges[i].startVertex == edge.startVertex && edges[i].endVertex == edge.endVertex {
 			return true
@@ -94,11 +94,11 @@ func isContainEdge(edges []*Edge, edge Edge) bool {
 	return false
 }
 
-func isSameVertex(v1 Vertex, v2 Vertex) bool {
+func IsSameVertex(v1 Vertex, v2 Vertex) bool {
 	return v1.key == v2.key
 }
 
-func (g *Graph) displayGraph() {
+func (g *Graph) DisplayGraph() {
 	fmt.Printf("Amount of Vertices : %d\n", g.nVertex)
 	for i := 0; i < g.nVertex; i++ {
 		fmt.Println(g.vertices[i].key)

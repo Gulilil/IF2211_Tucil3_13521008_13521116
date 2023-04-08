@@ -1,24 +1,31 @@
 package backend
 
 import (
+	"bufio"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path"
 )
 
-func readFile(path string) {
-	content, err := ioutil.ReadFile(path)
+func IdentifyAmountVertex(path string) int {
+	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(content)
+	count := 0
+	content := bufio.NewScanner(file)
+	content.Split(bufio.ScanLines)
+	for content.Scan() {
+		count++
+	}
+	return count/2
 }
 
 func main() {
 	curDir, _ := os.Getwd()
 	test := path.Join("test", "graph1.txt")
 	fullPath := path.Join(curDir, test)
-	readFile(fullPath)
+	fmt.Println(fullPath)
+	fmt.Println(IdentifyAmountVertex(fullPath))
 }

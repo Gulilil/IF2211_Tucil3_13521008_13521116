@@ -6,23 +6,22 @@ type Route struct {
 	accWeight int
 }
 
-
-func (r *Route) insertLastVertex(v Vertex) {
+func (r *Route) InsertLastVertex(v Vertex) {
 	r.buffer = append(r.buffer, &v)
 	r.nVertex++
 }
 
-func (r *Route) deleteFirstVertex() Vertex {
+func (r *Route) DeleteFirstVertex() Vertex {
 	temp := *r.buffer[0]
 	r.buffer = r.buffer[1:]
 	r.nVertex--
 	return temp
 }
 
-func (r *Route) isEmpty() bool {
+func (r *Route) IsEmpty() bool {
 	return r.nVertex == 0
-} 
+}
 
-func (r *Route) isLessWeight( r2 Route) bool {
+func (r *Route) IsLessWeight(r2 Route) bool {
 	return r.accWeight < r2.accWeight
 }

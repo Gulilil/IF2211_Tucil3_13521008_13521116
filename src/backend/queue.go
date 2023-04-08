@@ -5,15 +5,14 @@ type QueueRoute struct {
 	nRoute int
 }
 
-func (q *QueueRoute) enqueue( r Route) {
+func (q *QueueRoute) Enqueue(r Route) {
 	q.buffer = append(q.buffer, &r)
 	q.nRoute++
 }
 
-func (q *QueueRoute) dequeue() Route {
+func (q *QueueRoute) Dequeue() Route {
 	temp := *q.buffer[0]
 	q.buffer = q.buffer[1:]
 	q.nRoute--
 	return temp
 }
-
