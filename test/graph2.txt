@@ -4,3 +4,9 @@
 3 7 8 0 0 6
 2 0 10 0 0 0
 0 0 12 6 0 0
+Simpul1
+Simpul2
+Simpul3
+Simpul4
+Simpul5
+Simpul6
