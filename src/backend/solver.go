@@ -16,7 +16,17 @@ func (s Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
 }
 
 func (s Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
-	fmt.Println("aaaaa AStar")
+	q := &QueueRoute{}
+	curRoute := &Route{}
+	
+
+	check := false
+	for (!check) {
+
+		if (IsSolution(*curRoute, endVKey)){
+			check = true
+		}
+	}
 }
 
 func (s Solver) StartTime() {
