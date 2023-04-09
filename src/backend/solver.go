@@ -30,3 +30,4 @@ func (s Solver) StopTime() {
 func IsSolution(r Route, endVKey string) bool {
 	return r.buffer[r.nVertex-1].key == endVKey
 }
+

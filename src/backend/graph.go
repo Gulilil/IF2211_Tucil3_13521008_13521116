@@ -108,14 +108,3 @@ func (g *Graph) DisplayGraph() {
 		fmt.Printf("| \"%s\" -> (%d) -> \"%s\" |\n", g.edges[i].startVertex.key, g.edges[i].weight, g.edges[i].endVertex.key)
 	}
 }
-
-// func main() {
-// 	g := &Graph{}
-// 	g.addVertex("haha")
-// 	g.addVertex("huhu")
-// 	g.addVertex("hihi")
-// 	g.addVertex("hehe")
-// 	g.addEdge("haha", "hehe", 4)
-// 	g.addEdge("hehe", "hihi", 7)
-// 	g.displayGraph()
-// }
