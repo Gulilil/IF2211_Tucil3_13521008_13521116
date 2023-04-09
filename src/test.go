@@ -7,8 +7,8 @@ import (
 func main() {
 	fullPath := backend.AskingUserInput()
 	g := backend.ReadFileToGraph(fullPath)
-	g.DisplayGraph()
+	// g.DisplayGraph()
 
-	// s := backend.Solver{}
-	// s.SolveAStar(g, "London", "Berlin")
+	s := backend.Solver{}
+	s.SolveAStar(*g, "London", "Berlin")
 }

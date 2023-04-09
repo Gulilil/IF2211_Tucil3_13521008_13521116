@@ -44,13 +44,7 @@ func (g *Graph) AddVertex(k string) {
 	}
 }
 
-func (g *Graph) AddEdge(k1 string, k2 string, w float64) {
-	v1 := Vertex{
-		key: k1,
-	}
-	v2 := Vertex{
-		key: k2,
-	}
+func (g *Graph) AddEdge(v1 Vertex, v2 Vertex, w float64) {
 	e := Edge{
 		startVertex: v1,
 		endVertex:   v2,
@@ -110,7 +104,7 @@ func IsContainEdge(edges []*Edge, edge Edge) bool {
 }
 
 func IsSameVertex(v1 Vertex, v2 Vertex) bool {
-	return v1.key == v2.key
+	return v1.key == v2.key && v1.latPos == v2.latPos && v1.longPos == v2.longPos
 }
 
 func (g *Graph) DisplayGraph() {
