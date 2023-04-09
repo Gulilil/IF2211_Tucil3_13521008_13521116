@@ -23,15 +23,16 @@ func (q *QueueRoute) SortAscending() {
 			temp := q.buffer[i]
 			j := i-1
 			for temp.IsLessWeight(*q.buffer[j]) && j > 0 {
-				q.buffer[j+1] = q.buffer [j]
+				q.buffer[j+1].copyRoute(*q.buffer[j])
 				j--
 			}
 			if (j > 0){
-				q.buffer[j] = temp
+				q.buffer[j].copyRoute(*temp)
 			} else {
-				q.buffer[j+1] = q.buffer [j]
-				q.buffer[j] = temp
+				q.buffer[j+1].copyRoute(*q.buffer[j])
+				q.buffer[j].copyRoute(*temp)
 			}
 		}
 	}
 }
+

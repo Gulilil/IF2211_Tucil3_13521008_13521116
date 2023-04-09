@@ -9,6 +9,6 @@ func main() {
 	g := backend.ReadFileToGraph(fullPath)
 	g.DisplayGraph()
 
-	s := Solver{}
-	s.SolveAStar(g, "London", "Berlin")
+	// s := backend.Solver{}
+	// s.SolveAStar(g, "London", "Berlin")
 }

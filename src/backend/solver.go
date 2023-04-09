@@ -27,6 +27,7 @@ func (s Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
 
 		if (IsSolution(*curRoute, endVKey)){
 			check = true
+			break
 		}
 	}
 }
@@ -45,6 +46,7 @@ func (s Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
 
 		if (IsSolution(*curRoute, endVKey)){
 			check = true
+			break
 		}
 	}
 }
@@ -58,6 +60,6 @@ func (s Solver) StopTime() {
 }
 
 func IsSolution(r Route, endVKey string) bool {
-	return r.buffer[r.nVertex-1].key == endVKey
+	return r.GetLastVertex().key == endVKey
 }
 

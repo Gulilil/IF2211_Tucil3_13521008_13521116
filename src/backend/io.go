@@ -39,12 +39,17 @@ func ReadFileToGraph(path string) *Graph {
 	content.Split(bufio.ScanLines)
 	for content.Scan() {
 		if idx < n {
-			g.AddVertex(content.Text())
+			vInfo := strings.Split(content.Text(), " ")
+			g.AddVertex(vInfo[0])
+			long,_ := strconv.ParseFloat(vInfo[1], 64)
+			g.vertices[idx].longPos = float64(long)
+			lat, _ := strconv.ParseFloat(vInfo[2],64)
+			g.vertices[idx].latPos = float64(lat)
 			idx++
 		} else {
 			line := strings.Split(content.Text(), " ")
 			for i:= 0 ; i < n; i++{
-				val, _ := strconv.Atoi(line[i])
+				val, _ := strconv.ParseFloat(line[i], 64)
 				if (val != 0){
 					g.AddEdge(g.vertices[tempIdx].key, g.vertices[i].key, val)
 				}

@@ -1,9 +1,9 @@
-Simpul1
-Simpul2
-Simpul3
-Simpul4
-Simpul5
-Simpul6
+Simpul1 0 0
+Simpul2 0 6
+Simpul3 4 0
+Simpul4 0 3
+Simpul5 2 0
+Simpul6 6 3
 0 6 4 3 2 0
 6 0 0 7 0 0
 4 0 0 8 10 12

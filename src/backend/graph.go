@@ -1,15 +1,20 @@
 package backend
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type Vertex struct {
 	key string
+	longPos float64
+	latPos float64
 }
 
 type Edge struct {
 	startVertex Vertex
 	endVertex   Vertex
-	weight      int
+	weight      float64
 }
 
 type Graph struct {
@@ -17,6 +22,16 @@ type Graph struct {
 	vertices []*Vertex
 	nEdge    int
 	edges    []*Edge
+}
+
+func (v Vertex) calculateDistance(v2 Vertex) float64 {
+	return math.Sqrt(math.Pow(v2.latPos - v.latPos, 2) + math.Pow(v2.longPos - v.longPos, 2))
+}
+
+func (v Vertex) copyVertex(v2 Vertex) {
+	v.key = v2.key
+	v.latPos = v2.latPos
+	v.longPos = v2.longPos
 }
 
 func (g *Graph) AddVertex(k string) {
@@ -29,7 +44,7 @@ func (g *Graph) AddVertex(k string) {
 	}
 }
 
-func (g *Graph) AddEdge(k1 string, k2 string, w int) {
+func (g *Graph) AddEdge(k1 string, k2 string, w float64) {
 	v1 := Vertex{
 		key: k1,
 	}
@@ -78,7 +93,7 @@ func (g *Graph) GetEdgeWithEndV(endV Vertex) []*Edge {
 
 func IsContainVertex(vertices []*Vertex, vertex Vertex) bool {
 	for i := 0; i < len(vertices); i++ {
-		if vertices[i].key == vertex.key {
+		if IsSameVertex(*vertices[i], vertex) {
 			return true
 		}
 	}
@@ -101,10 +116,10 @@ func IsSameVertex(v1 Vertex, v2 Vertex) bool {
 func (g *Graph) DisplayGraph() {
 	fmt.Printf("Amount of Vertices : %d\n", g.nVertex)
 	for i := 0; i < g.nVertex; i++ {
-		fmt.Println(g.vertices[i].key)
+		fmt.Printf("%s  (%.2f, %.2f)\n",g.vertices[i].key, g.vertices[i].longPos, g.vertices[i].latPos)
 	}
 	fmt.Printf("Amount of Edges : %d\n", g.nEdge)
 	for i := 0; i < g.nEdge; i++ {
-		fmt.Printf("| \"%s\" -> (%d) -> \"%s\" |\n", g.edges[i].startVertex.key, g.edges[i].weight, g.edges[i].endVertex.key)
+		fmt.Printf("| \"%s\" -> (%.2f) -> \"%s\" |\n", g.edges[i].startVertex.key, g.edges[i].weight, g.edges[i].endVertex.key)
 	}
 }

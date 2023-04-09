@@ -1,9 +1,9 @@
-London
-Paris
-Rome
-Berlin
-Istanbul
-Moscow
+London 14 15
+Paris 18 15
+Rome 18 8
+Berlin 12 16
+Istanbul 12 25
+Moscow 12 18
 0 4 0 0 0 0
 4 0 7 0 15 0
 0 7 0 10 3 0

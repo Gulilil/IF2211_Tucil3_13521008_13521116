@@ -29,3 +29,11 @@ func (r *Route) IsEmpty() bool {
 func (r *Route) IsLessWeight(r2 Route) bool {
 	return r.accWeight < r2.accWeight
 }
+
+func (r *Route) copyRoute(r2 Route) {
+	r.nVertex = r2.nVertex
+	r.accWeight = r2.accWeight
+	for i := 0; i < r.nVertex; i++ {
+		r.buffer[i].copyVertex(*r2.buffer[i])
+	}
+}
