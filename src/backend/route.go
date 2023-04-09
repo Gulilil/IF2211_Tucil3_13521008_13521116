@@ -18,6 +18,10 @@ func (r *Route) DeleteFirstVertex() Vertex {
 	return temp
 }
 
+func (r *Route) GetLastVertex() Vertex {
+	return *r.buffer[r.nVertex-1]
+}
+
 func (r *Route) IsEmpty() bool {
 	return r.nVertex == 0
 }
