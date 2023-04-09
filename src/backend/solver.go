@@ -22,7 +22,7 @@ func (s Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
 
 	check := false
 	for (!check) {
-		*curRoute = q.Dequeue()
+		curRoute = q.Dequeue()
 		
 
 		if (IsSolution(*curRoute, endVKey)){
@@ -45,38 +45,35 @@ func (s Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
 	count := 0
 	check := false
 	for (!check) {
-		*curRoute = q.Dequeue()
-		q.DisplayQueue()
 
+		curRoute = q.Dequeue()
 		curVertex := curRoute.GetLastVertex()
 
 		fmt.Println(curVertex)
-		fmt.Print("curRoute : ")
-		curRoute.DisplayRoute()
 
 		if (IsSolution(*curRoute, endVKey)){
 			check = true
 			break
-		}
-		q.DisplayQueue()
-		
+		}		
 
 		availableEdges := availableEdges(*curRoute, g.GetEdgeWithStartV(curVertex))
 		if (len(availableEdges) != 0){ 
 			temp := &Route{}
-			temp.CopyConstructorRoute(*curRoute)
+			temp.CopyConstructorRoute(curRoute)
 			for i, e := range availableEdges {
 				if i > 0 {
-					temp.CopyRoute(*curRoute)
+					temp.CopyRoute(curRoute)
 				}
 				temp.InsertLastVertex(e.endVertex)
 				temp.accWeight += e.weight
 				q.Enqueue(*temp)
 			}
 		}
-		fmt.Println("After: ")
-		q.DisplayQueue()
 		q.SortAscending()
+
+		fmt.Print("curRoute : ")
+		curRoute.DisplayRoute()
+		q.DisplayQueue()
 
 		if (count == 3){
 			check = true

@@ -32,7 +32,7 @@ func (r *Route) IsLessWeight(r2 Route) bool {
 	return r.accWeight < r2.accWeight
 }
 
-func (r *Route) CopyConstructorRoute(r2 Route) {
+func (r *Route) CopyConstructorRoute(r2 *Route) {
 	// Make sure that r is empty
 	r.nVertex = r2.nVertex
 	r.accWeight = r2.accWeight
@@ -41,7 +41,7 @@ func (r *Route) CopyConstructorRoute(r2 Route) {
 	}
 }
 
-func (r *Route) CopyRoute(r2 Route) {
+func (r *Route) CopyRoute(r2 *Route) {
 	r.nVertex = r2.nVertex
 	r.accWeight = r2.accWeight
 	r.buffer = r2.buffer[:r2.nVertex]
