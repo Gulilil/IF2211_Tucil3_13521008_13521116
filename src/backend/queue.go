@@ -16,3 +16,22 @@ func (q *QueueRoute) Dequeue() Route {
 	q.nRoute--
 	return temp
 }
+
+func (q *QueueRoute) SortAscending() {
+	if q.nRoute > 1 {
+		for i:= 1 ; i < q.nRoute; i++ {
+			temp := q.buffer[i]
+			j := i-1
+			for temp.IsLessWeight(*q.buffer[j]) && j > 0 {
+				q.buffer[j+1] = q.buffer [j]
+				j--
+			}
+			if (j > 0){
+				q.buffer[j] = temp
+			} else {
+				q.buffer[j+1] = q.buffer [j]
+				q.buffer[j] = temp
+			}
+		}
+	}
+}
