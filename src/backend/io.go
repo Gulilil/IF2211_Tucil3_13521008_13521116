@@ -51,7 +51,7 @@ func ReadFileToGraph(path string) *Graph {
 			for i:= 0 ; i < n; i++{
 				val, _ := strconv.ParseFloat(line[i], 64)
 				if (val != 0){
-					g.AddEdge(g.vertices[tempIdx].key, g.vertices[i].key, val)
+					g.AddEdge(*g.vertices[tempIdx], *g.vertices[i], val)
 				}
 			}
 			tempIdx++

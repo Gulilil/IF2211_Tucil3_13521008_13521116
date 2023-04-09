@@ -1,12 +1,12 @@
 package backend
 
 import (
+	"fmt"
 	"time"
 )
 
 type Solver struct {
 	solRoute Route
-	curVertex Vertex
 	start time.Time
 	duration time.Duration
 }
@@ -34,21 +34,86 @@ func (s Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
 
 func (s Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
 
+	s.StartTime()
 	// Declaring Variables
+	q := &QueueRoute{}
 	curRoute := &Route{}
-
 	// Preparing Variables Setup
-	curRoute.InsertLastVertex(Vertex{key : startVKey})
+	curRoute.InsertLastVertex(*g.GetVertex(startVKey))
+	q.Enqueue(*curRoute)
 
+	count := 0
 	check := false
 	for (!check) {
+		*curRoute = q.Dequeue()
+		q.DisplayQueue()
 
+		curVertex := curRoute.GetLastVertex()
+
+		fmt.Println(curVertex)
+		fmt.Print("curRoute : ")
+		curRoute.DisplayRoute()
 
 		if (IsSolution(*curRoute, endVKey)){
 			check = true
 			break
 		}
+		q.DisplayQueue()
+		
+
+		availableEdges := availableEdges(*curRoute, g.GetEdgeWithStartV(curVertex))
+		if (len(availableEdges) != 0){ 
+			temp := &Route{}
+			temp.CopyConstructorRoute(*curRoute)
+			for i, e := range availableEdges {
+				if i > 0 {
+					temp.CopyRoute(*curRoute)
+				}
+				temp.InsertLastVertex(e.endVertex)
+				temp.accWeight += e.weight
+				q.Enqueue(*temp)
+			}
+		}
+		fmt.Println("After: ")
+		q.DisplayQueue()
+		q.SortAscending()
+
+		if (count == 3){
+			check = true
+		}
+		count++
 	}
+	s.StopTime()
+}
+
+func availableEdges(r Route, edges []*Edge) [] *Edge {
+	result := []*Edge{}
+	for _, e := range edges {
+		if (!IsContainVertex(r.buffer, e.endVertex)){
+			result = append(result, e)
+		}
+	}
+	return result
+}
+
+func getOptimalEdgeAStar(g Graph, edges []*Edge, endVKey string) Edge {
+	goalVertex := g.GetVertex(endVKey)
+
+	minDistance := float64(0)
+	optimalE := Edge{}
+	for i, e := range edges{
+		distance := e.endVertex.calculateDistance(*goalVertex) + e.weight
+		if i == 0{
+			minDistance = distance
+			optimalE = *e
+		} else {
+			if (distance < minDistance){
+				minDistance = distance
+				optimalE = *e
+			}
+		}
+	}
+	return optimalE
 }
 
 func (s Solver) StartTime() {

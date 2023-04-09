@@ -17,22 +17,36 @@ func (q *QueueRoute) Dequeue() Route {
 	return temp
 }
 
+func (q *QueueRoute) DequeueAt(idx int) Route {
+	temp := *q.buffer[idx]
+	for i:= idx; i < q.nRoute-1; i++ {
+		q.buffer[i] = q.buffer[i+1]
+	} 
+	q.nRoute--
+	return temp
+}
+
 func (q *QueueRoute) SortAscending() {
 	if q.nRoute > 1 {
 		for i:= 1 ; i < q.nRoute; i++ {
 			temp := q.buffer[i]
 			j := i-1
 			for temp.IsLessWeight(*q.buffer[j]) && j > 0 {
-				q.buffer[j+1].copyRoute(*q.buffer[j])
+				q.buffer[j+1].CopyRoute(*q.buffer[j])
 				j--
 			}
 			if (j > 0){
-				q.buffer[j].copyRoute(*temp)
+				q.buffer[j].CopyRoute(*temp)
 			} else {
-				q.buffer[j+1].copyRoute(*q.buffer[j])
-				q.buffer[j].copyRoute(*temp)
+				q.buffer[j+1].CopyRoute(*q.buffer[j])
+				q.buffer[j].CopyRoute(*temp)
 			}
 		}
 	}
 }
 
+func (q *QueueRoute) DisplayQueue() {
+	for _, r := range q.buffer {
+		r.DisplayRoute()
+	}
+}

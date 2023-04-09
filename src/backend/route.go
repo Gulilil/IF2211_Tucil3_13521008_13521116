@@ -1,9 +1,11 @@
 package backend
 
+import "fmt"
+
 type Route struct {
 	buffer    []*Vertex
 	nVertex   int
-	accWeight int
+	accWeight float64
 }
 
 func (r *Route) InsertLastVertex(v Vertex) {
@@ -30,10 +32,24 @@ func (r *Route) IsLessWeight(r2 Route) bool {
 	return r.accWeight < r2.accWeight
 }
 
-func (r *Route) copyRoute(r2 Route) {
+func (r *Route) CopyConstructorRoute(r2 Route) {
+	// Make sure that r is empty
 	r.nVertex = r2.nVertex
 	r.accWeight = r2.accWeight
-	for i := 0; i < r.nVertex; i++ {
-		r.buffer[i].copyVertex(*r2.buffer[i])
+	for i := range r2.buffer {
+		r.buffer = append(r.buffer, r2.buffer[i])
 	}
+}
+
+func (r *Route) CopyRoute(r2 Route) {
+	r.nVertex = r2.nVertex
+	r.accWeight = r2.accWeight
+	r.buffer = r2.buffer[:r2.nVertex]
+}
+
+func (r *Route) DisplayRoute() {
+	for i := 0; i < r.nVertex; i++ {
+		fmt.Print(r.buffer[i].key, " ")
+	}
+	fmt.Println(r.accWeight)
 }
