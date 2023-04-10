@@ -11,7 +11,7 @@ type Solver struct {
 	duration time.Duration
 }
 
-func (s Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
+func (s *Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
 
 	s.StartTime()
 	// Declaring Variables
@@ -68,11 +68,10 @@ func (s Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
 		fmt.Println("No Solution Found")
 	} else {
 		s.solRoute.CopyConstructorRoute(curRoute)
-		s.solRoute.DisplayRoute()
 	}
 }
 
-func (s Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
+func (s *Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
 
 	s.StartTime()
 	// Declaring Variables
@@ -132,7 +131,6 @@ func (s Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
 		fmt.Println("No Solution Found")
 	} else {
 		s.solRoute.CopyConstructorRoute(curRoute)
-		s.solRoute.DisplayRoute()
 	}
 }
 
@@ -146,15 +144,15 @@ func AvailableEdges(r Route, edges []*Edge) [] *Edge {
 	return result
 }
 
-func (s Solver) StartTime() {
+func (s *Solver) StartTime() {
 	s.start = time.Now()
 }
 
-func (s Solver) StopTime() {
+func (s *Solver) StopTime() {
 	s.duration = time.Since(s.start)
 }
 
-func (s Solver) DisplaySolutionRoute(){
+func (s *Solver) DisplaySolutionRoute(){
 	s.solRoute.DisplayRoute()
 }
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"RoutePlanner/src/backend"
+	"fmt"
 )
 
 func main() {
@@ -11,8 +12,8 @@ func main() {
 
 	start, end := backend.AskUserStartEndVertices()
 
-	s := backend.Solver{}
-	s.SolveUCS(*g, start, end)
-	// fmt.Print("Solution Route : ")
-	// s.DisplaySolutionRoute()
+	s := &backend.Solver{}
+	s.SolveAStar(*g, start, end)
+	fmt.Print("Solution Route : ")
+	s.DisplaySolutionRoute()
 }
