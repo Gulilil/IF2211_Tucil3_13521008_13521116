@@ -12,23 +12,63 @@ type Solver struct {
 }
 
 func (s Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
+
+	s.StartTime()
 	// Declaring Variables
 	q := &QueueRoute{}
 	curRoute := &Route{}
-
 	// Preparing Variables Setup
-	curRoute.InsertLastVertex(Vertex{key : startVKey})
+	curRoute.InsertLastVertex(*g.GetVertex(startVKey))
 	q.Enqueue(*curRoute)
 
+	count := 0
 	check := false
 	for (!check) {
+
+		if (q.nRoute == 0){
+			break
+		}
+
 		curRoute = q.Dequeue()
-		
+		curVertex := curRoute.GetLastVertex()
 
 		if (IsSolution(*curRoute, endVKey)){
 			check = true
 			break
+		}		
+
+		availableEdges := AvailableEdges(*curRoute, g.GetEdgeWithStartV(curVertex))
+		if (len(availableEdges) != 0){ 
+			temp := &Route{}
+			temp.CopyConstructorRoute(curRoute)
+			for i, e := range availableEdges {
+				if i > 0 {
+					temp.CopyRoute(curRoute)
+				}
+				temp.InsertLastVertex(e.endVertex)
+				temp.accWeight += e.weight
+				q.Enqueue(*temp)
+			}
 		}
+		q.SortAscending()
+
+		// HANYA UNTUK CHECKING
+		// fmt.Println(curVertex)
+		// fmt.Println("=========")
+		// fmt.Print("CURROUTE : ")
+		// curRoute.DisplayRoute()
+		// q.DisplayQueue()
+		// fmt.Println("=========")
+
+		count++
+	}
+	s.StopTime()
+
+	if (!check){
+		fmt.Println("No Solution Found")
+	} else {
+		s.solRoute.CopyConstructorRoute(curRoute)
+		s.solRoute.DisplayRoute()
 	}
 }
 

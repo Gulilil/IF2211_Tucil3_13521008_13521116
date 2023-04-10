@@ -12,7 +12,7 @@ func main() {
 	start, end := backend.AskUserStartEndVertices()
 
 	s := backend.Solver{}
-	s.SolveAStar(*g, start, end)
+	s.SolveUCS(*g, start, end)
 	// fmt.Print("Solution Route : ")
 	// s.DisplaySolutionRoute()
 }
