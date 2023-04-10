@@ -9,6 +9,10 @@ func main() {
 	g := backend.ReadFileToGraph(fullPath)
 	// g.DisplayGraph()
 
+	start, end := backend.AskUserStartEndVertices()
+
 	s := backend.Solver{}
-	s.SolveAStar(*g, "London", "Berlin")
+	s.SolveAStar(*g, start, end)
+	// fmt.Print("Solution Route : ")
+	// s.DisplaySolutionRoute()
 }

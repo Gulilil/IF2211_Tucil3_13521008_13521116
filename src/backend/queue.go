@@ -46,6 +46,26 @@ func (q *QueueRoute) SortAscending() {
 	}
 }
 
+func (q *QueueRoute) SortAStarAscending() {
+	if q.nRoute > 1 {
+		for i := 1; i < q.nRoute; i++ {
+			temp := &Route{}
+			temp.CopyConstructorRoute(q.buffer[i])
+			j := i - 1
+			for temp.IsAStarLess(*q.buffer[j]) && j > 0 {
+				q.buffer[j+1].CopyRoute(q.buffer[j])
+				j--
+			}
+			if !temp.IsLessWeight(*q.buffer[j]) {
+				q.buffer[j+1].CopyRoute(temp)
+			} else {
+				q.buffer[j+1].CopyRoute(q.buffer[j])
+				q.buffer[j].CopyRoute(temp)
+			}
+		}
+	}
+}
+
 func (q *QueueRoute) DisplayQueue() {
 	for _, r := range q.buffer {
 		r.DisplayRoute()

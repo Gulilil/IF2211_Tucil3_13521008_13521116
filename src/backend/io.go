@@ -71,3 +71,14 @@ func AskingUserInput() string {
 	return fullPath
 }
 
+func AskUserStartEndVertices () (string, string) {
+	var startV string
+	var endV string
+	fmt.Print("What is the name of the start Vertex: ")
+	fmt.Scanln(&startV)
+	fmt.Print("What is the name of the end Vertex: ")
+	fmt.Scanln(&endV)
+	return startV, endV
+
+}
+

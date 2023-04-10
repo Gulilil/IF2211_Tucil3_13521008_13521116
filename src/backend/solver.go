@@ -42,21 +42,25 @@ func (s Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
 	curRoute.InsertLastVertex(*g.GetVertex(startVKey))
 	q.Enqueue(*curRoute)
 
+	goalVertex := g.GetVertex(endVKey)
+
 	count := 0
 	check := false
 	for (!check) {
 
+		if (q.nRoute == 0){
+			break
+		}
+
 		curRoute = q.Dequeue()
 		curVertex := curRoute.GetLastVertex()
-
-		fmt.Println(curVertex)
 
 		if (IsSolution(*curRoute, endVKey)){
 			check = true
 			break
 		}		
 
-		availableEdges := availableEdges(*curRoute, g.GetEdgeWithStartV(curVertex))
+		availableEdges := AvailableEdges(*curRoute, g.GetEdgeWithStartV(curVertex))
 		if (len(availableEdges) != 0){ 
 			temp := &Route{}
 			temp.CopyConstructorRoute(curRoute)
@@ -66,24 +70,33 @@ func (s Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
 				}
 				temp.InsertLastVertex(e.endVertex)
 				temp.accWeight += e.weight
+				temp.aStarDistance = e.endVertex.calculateDistance(*goalVertex)
 				q.Enqueue(*temp)
 			}
 		}
-		q.SortAscending()
+		q.SortAStarAscending()
 
-		fmt.Print("curRoute : ")
-		curRoute.DisplayRoute()
-		q.DisplayQueue()
+		// HANYA UNTUK CHECKING
+		// fmt.Println(curVertex)
+		// fmt.Println("=========")
+		// fmt.Print("CURROUTE : ")
+		// curRoute.DisplayRoute()
+		// q.DisplayQueue()
+		// fmt.Println("=========")
 
-		if (count == 3){
-			check = true
-		}
 		count++
 	}
 	s.StopTime()
+
+	if (!check){
+		fmt.Println("No Solution Found")
+	} else {
+		s.solRoute.CopyConstructorRoute(curRoute)
+		s.solRoute.DisplayRoute()
+	}
 }
 
-func availableEdges(r Route, edges []*Edge) [] *Edge {
+func AvailableEdges(r Route, edges []*Edge) [] *Edge {
 	result := []*Edge{}
 	for _, e := range edges {
 		if (!IsContainVertex(r.buffer, e.endVertex)){
@@ -93,32 +106,16 @@ func availableEdges(r Route, edges []*Edge) [] *Edge {
 	return result
 }
 
-func getOptimalEdgeAStar(g Graph, edges []*Edge, endVKey string) Edge {
-	goalVertex := g.GetVertex(endVKey)
-
-	minDistance := float64(0)
-	optimalE := Edge{}
-	for i, e := range edges{
-		distance := e.endVertex.calculateDistance(*goalVertex) + e.weight
-		if i == 0{
-			minDistance = distance
-			optimalE = *e
-		} else {
-			if (distance < minDistance){
-				minDistance = distance
-				optimalE = *e
-			}
-		}
-	}
-	return optimalE
-}
-
 func (s Solver) StartTime() {
 	s.start = time.Now()
 }
 
 func (s Solver) StopTime() {
 	s.duration = time.Since(s.start)
+}
+
+func (s Solver) DisplaySolutionRoute(){
+	s.solRoute.DisplayRoute()
 }
 
 func IsSolution(r Route, endVKey string) bool {
