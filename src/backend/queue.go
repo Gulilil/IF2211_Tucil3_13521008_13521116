@@ -56,7 +56,7 @@ func (q *QueueRoute) SortAStarAscending() {
 				q.buffer[j+1].CopyRoute(q.buffer[j])
 				j--
 			}
-			if !temp.IsLessWeight(*q.buffer[j]) {
+			if !temp.IsAStarLess(*q.buffer[j]) {
 				q.buffer[j+1].CopyRoute(temp)
 			} else {
 				q.buffer[j+1].CopyRoute(q.buffer[j])

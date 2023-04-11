@@ -8,6 +8,12 @@ import (
 	"path"
 )
 
+type Data struct {
+	Vertices string
+	Solution string
+	TotalNodes int
+	TotalCost int
+}
 
 
 func main() {
@@ -20,18 +26,22 @@ func main() {
 }
 
 func homePageHandler(w http.ResponseWriter, r *http.Request) {
+
+	// s := &backend.Solver{}
+	// g := &backend.Graph {}
+
+
+	// var data = Data{
+	// 	Vertices: "(Node1) (Node2) (Node3) (Node4) (Node5)",
+	// 	Solution: "(Node1) (Node3) (Node5)",
+	// 	TotalNodes : 4,
+	// 	TotalCost : 240,
+	// }
+
+	var data = Data {}
+
 	var filePath = path.Join(getSrcPath(), "frontend", "*.html")
 	var tmpl= template.Must(template.ParseGlob(filePath))
-
-
-	var data = map[string]interface{}{
-		"title": "Route Planner",
-		"name":  "xixixixi",
-		"vertices": "(Node1) (Node2) (Node3) (Node4) (Node5)",
-		"solution": "(Node1) (Node3) (Node5)",
-		"totalNodes" : 4,
-		"totalCost" : 240,
-	}
 
 	err := tmpl.Execute(w, data)
 	if err != nil {

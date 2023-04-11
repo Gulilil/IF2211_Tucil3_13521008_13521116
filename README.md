@@ -18,7 +18,8 @@
 | Required Program | Reference Link|
 |-------------------|-------------|
 | Go (Golang)       | [Go (Golang)](https://go.dev/doc/install) |
-
+| Tailwind CSS   | [Tailwind CSS](https://tailwindcss.com/docs/installation) |
+| Graphviz | [Graphviz]() |
 
 ## **How to Run The Program**
 1. Clone this repo using this command
