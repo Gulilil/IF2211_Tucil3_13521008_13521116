@@ -1,3 +1,4 @@
+{{define "form"}}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,10 +76,8 @@
         </div>
         <!-- Submit Button -->
         <div class="flex justify-center items-center">
-          <button id="submit">
-            <h1
-              class="text-[#616571] bg-[#F7F7F7] border-4 border-[#656171] py-3 px-6 rounded-3xl hover:text-[#F7F7F7] hover:bg-[#616571]"
-            >
+          <button type="submit" id="submit">
+            <h1 class="text-[#616571] bg-[#F7F7F7] border-4 border-[#656171] py-3 px-6 rounded-3xl hover:text-[#F7F7F7] hover:bg-[#616571]">
               Submit
             </h1>
           </button>
@@ -95,13 +94,13 @@
         <!-- RunSolution -->
         <div class="flex flex-row gap-3 items-start">
           <label for="startV"><h1>Start Vertex</h1></label>
-          <input type="text" id="startV" />
+          <input type="text" placeholder="Insert here" id="startV" name="startV"required/>
         </div>
         <div class="flex flex-row gap-5 items-start">
-          <label for="endV"><h1>End Vertex</h1> </label>
-          <input type="text" id="endV" />
+          <label for="endV" ><h1>End Vertex</h1> </label>
+          <input type="text" placeholder="Insert here" id="endV" name= "endV"required/>
         </div>
-        <button id="solve" class="mx-auto w-1/2">
+        <button type="submit" id="solve" class="mx-auto w-1/2">
           <h1
             class="text-[#616571] bg-[#F7F7F7] border-4 border-[#656171] py-3 px-6 rounded-3xl hover:text-[#F7F7F7] hover:bg-[#616571]"
           >
@@ -159,3 +158,4 @@
     </div>
   </body>
 </html>
+{{end}}

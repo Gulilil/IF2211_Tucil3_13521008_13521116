@@ -17,39 +17,72 @@ type Data struct {
 
 
 func main() {
+	assetsPath := path.Join(getSrcPath(), "frontend", "assets")
 
 	http.HandleFunc("/", homePageHandler)
-	fmt.Println("Server started at => localhost:9000/")
-	assetsPath := path.Join(getSrcPath(), "frontend", "assets")
+	// http.HandleFunc("/process", processHandler)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir(assetsPath))))
+	
+	fmt.Println("Server started at => localhost:9000/")
 	http.ListenAndServe(":9000", nil)
 }
 
 func homePageHandler(w http.ResponseWriter, r *http.Request) {
 
-	// s := &backend.Solver{}
-	// g := &backend.Graph {}
 
 
-	// var data = Data{
-	// 	Vertices: "(Node1) (Node2) (Node3) (Node4) (Node5)",
-	// 	Solution: "(Node1) (Node3) (Node5)",
-	// 	TotalNodes : 4,
-	// 	TotalCost : 240,
-	// }
+		// var data = Data {}
 
-	var data = Data {}
-
-	var filePath = path.Join(getSrcPath(), "frontend", "*.html")
-	var tmpl= template.Must(template.ParseGlob(filePath))
-
-	err := tmpl.Execute(w, data)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
+		var filePath = path.Join(getSrcPath(), "frontend", "index.html")
+		var tmpl= template.Must(template.New("form").ParseFiles(filePath))
+	
+		var data = Data {
+			Vertices : "",
+			Solution : "",
+			TotalNodes: 0,
+			TotalCost: 0,
+		}
+	
+		err := tmpl.Execute(w, data)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
+	
 }
+
+// func processHandler(w http.ResponseWriter, r *http.Request) {
+// 	if r.Method == "POST" {
+
+// 		var filePath = path.Join(getSrcPath(), "frontend", "index.html")
+// 		var tmpl = template.Must(template.New("result").ParseFiles(filePath))
+
+// 		if err := r.ParseForm(); err != nil {
+// 			http.Error(w, err.Error(), http.StatusInternalServerError)
+// 		}
+
+// 		var start = r.FormValue("startV")
+// 		var end = r.FormValue("endV")
+
+// 		fmt.Println(start)
+// 		fmt.Println(end)
+
+// 		var data = Data {
+// 			Vertices : start,
+// 			Solution : end,
+// 			TotalNodes: 0,
+// 			TotalCost: 0,
+// 		}
+
+// 		if err := tmpl.Execute(w, data); err != nil {
+// 			http.Error(w, err.Error(), http.StatusInternalServerError)
+// 		}
+// 	}
+// 	http.Error(w, "", http.StatusBadRequest)
+// }
+
 
 func getSrcPath() string{
 	curDir, _ := os.Getwd()
 	return path.Join(curDir, "src")
 }
+
