@@ -27,6 +27,10 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	var data = map[string]interface{}{
 		"title": "Route Planner",
 		"name":  "xixixixi",
+		"vertices": "(Node1) (Node2) (Node3) (Node4) (Node5)",
+		"solution": "(Node1) (Node3) (Node5)",
+		"totalNodes" : 4,
+		"totalCost" : 240,
 	}
 
 	err := tmpl.Execute(w, data)

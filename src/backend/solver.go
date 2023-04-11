@@ -7,8 +7,8 @@ import (
 
 type Solver struct {
 	solRoute Route
-	start time.Time
-	duration time.Duration
+	start int64
+	stop int64
 }
 
 func (s *Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
@@ -145,15 +145,19 @@ func AvailableEdges(r Route, edges []*Edge) [] *Edge {
 }
 
 func (s *Solver) StartTime() {
-	s.start = time.Now()
+	s.start = time.Now().UnixNano() / int64(time.Millisecond)
 }
 
 func (s *Solver) StopTime() {
-	s.duration = time.Since(s.start)
+	s.stop = time.Now().UnixNano() / int64(time.Millisecond)
 }
 
 func (s *Solver) DisplaySolutionRoute(){
 	s.solRoute.DisplayRoute()
+}
+
+func (s *Solver) GetExecutionTime() (int64){
+	return s.stop-s.start	
 }
 
 func IsSolution(r Route, endVKey string) bool {

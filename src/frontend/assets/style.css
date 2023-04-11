@@ -106,6 +106,12 @@ h2 {
   width: 80%;
 }
 
+input[type=text]{
+    width : 50%;
+    border-radius: 10px;
+    text-align : center;
+}
+
 input[type=text]:focus {
-    background-color: lightblue;
+    background-color: #F7F7F7;
   }
