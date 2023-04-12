@@ -106,12 +106,17 @@ h2 {
   width: 80%;
 }
 
-input[type=text]{
-    width : 50%;
-    border-radius: 10px;
-    text-align : center;
+input[type="text"] {
+  width: 50%;
+  border-radius: 10px;
+  text-align: center;
 }
 
-input[type=text]:focus {
-    background-color: #F7F7F7;
-  }
+input[type="text"]:focus {
+  background-color: #f7f7f7;
+}
+
+input[type="file"] {
+  --tw-text-opacity: 1;
+  color: rgb(32 32 32 / var(--tw-text-opacity));
+}

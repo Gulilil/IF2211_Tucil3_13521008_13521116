@@ -10,110 +10,120 @@ type Solver struct {
 
 func (s *Solver) SolveUCS(g Graph, startVKey string, endVKey string) {
 
-	// Declaring Variables
-	q := &QueueRoute{}
-	curRoute := &Route{}
+	s.ResetSolver()
+	startVertex := g.GetVertex(startVKey)
 
-	// Preparing Variables Setup
-	curRoute.InsertLastVertex(*g.GetVertex(startVKey))
-	q.Enqueue(*curRoute)
+	if startVertex != nil {
+		// Declaring Variables
+		q := &QueueRoute{}
+		curRoute := &Route{}
 
-	count := 0
-	check := false
+		// Preparing Variables Setup
+		curRoute.InsertLastVertex(*startVertex)
+		q.Enqueue(*curRoute)
 
-	// Looping for finding solution
-	for !check {
+		count := 0
+		check := false
 
-		if q.nRoute == 0 {
-			break
-		}
+		// Looping for finding solution
+		for !check {
 
-		curRoute = q.Dequeue()
-		curVertex := curRoute.GetLastVertex()
-
-		if IsSolution(*curRoute, endVKey) {
-			check = true
-			break
-		}
-
-		availableEdges := AvailableEdges(*curRoute, g.GetEdgeWithStartV(curVertex))
-		if len(availableEdges) != 0 {
-			temp := &Route{}
-			temp.CopyConstructorRoute(curRoute)
-			for i, e := range availableEdges {
-				if i > 0 {
-					temp.CopyRoute(curRoute)
-				}
-				temp.InsertLastVertex(e.endVertex)
-				temp.accWeight += e.weight
-				q.Enqueue(*temp)
+			if q.nRoute == 0 {
+				break
 			}
-		}
-		q.SortAscending()
-		count++
-	}
 
-	// Checking if solution found
-	if !check {
-		fmt.Println("No Solution Found")
-	} else {
-		s.solRoute.CopyConstructorRoute(curRoute)
+			curRoute = q.Dequeue()
+			curVertex := curRoute.GetLastVertex()
+
+			if IsSolution(*curRoute, endVKey) {
+				check = true
+				break
+			}
+
+			availableEdges := AvailableEdges(*curRoute, g.GetEdgeWithStartV(curVertex))
+			if len(availableEdges) != 0 {
+				temp := &Route{}
+				temp.CopyConstructorRoute(curRoute)
+				for i, e := range availableEdges {
+					if i > 0 {
+						temp.CopyRoute(curRoute)
+					}
+					temp.InsertLastVertex(e.endVertex)
+					temp.accWeight += e.weight
+					q.Enqueue(*temp)
+				}
+			}
+			q.SortAscending()
+			count++
+		}
+
+		// Checking if solution found
+		if !check {
+			fmt.Println("No Solution Found")
+		} else {
+			s.solRoute.CopyConstructorRoute(curRoute)
+		}
 	}
 }
 
 func (s *Solver) SolveAStar(g Graph, startVKey string, endVKey string) {
 
-	// Declaring Variables
-	q := &QueueRoute{}
-	curRoute := &Route{}
+	s.ResetSolver()
+	startVertex := g.GetVertex(startVKey)
 
-	// Preparing Variables Setup
-	curRoute.InsertLastVertex(*g.GetVertex(startVKey))
-	q.Enqueue(*curRoute)
+	if startVertex != nil {
+		// Declaring Variables
+		q := &QueueRoute{}
+		curRoute := &Route{}
 
-	goalVertex := g.GetVertex(endVKey)
+		// Preparing Variables Setup
+		curRoute.InsertLastVertex(*g.GetVertex(startVKey))
+		q.Enqueue(*curRoute)
 
-	count := 0
-	check := false
+		goalVertex := g.GetVertex(endVKey)
 
-	// Looping for finding solution
-	for !check {
+		count := 0
+		check := false
 
-		if q.nRoute == 0 {
-			break
-		}
+		// Looping for finding solution
+		for !check {
 
-		curRoute = q.Dequeue()
-		curVertex := curRoute.GetLastVertex()
-
-		if IsSolution(*curRoute, endVKey) {
-			check = true
-			break
-		}
-
-		availableEdges := AvailableEdges(*curRoute, g.GetEdgeWithStartV(curVertex))
-		if len(availableEdges) != 0 {
-			temp := &Route{}
-			temp.CopyConstructorRoute(curRoute)
-			for i, e := range availableEdges {
-				if i > 0 {
-					temp.CopyRoute(curRoute)
-				}
-				temp.InsertLastVertex(e.endVertex)
-				temp.accWeight += e.weight
-				temp.aStarDistance = e.endVertex.calculateDistance(*goalVertex)
-				q.Enqueue(*temp)
+			if q.nRoute == 0 {
+				break
 			}
-		}
-		q.SortAStarAscending()
-		count++
-	}
 
-	// Checking if solution found
-	if !check {
-		fmt.Println("No Solution Found")
-	} else {
-		s.solRoute.CopyConstructorRoute(curRoute)
+			curRoute = q.Dequeue()
+			curVertex := curRoute.GetLastVertex()
+
+			if IsSolution(*curRoute, endVKey) {
+				check = true
+				break
+			}
+
+			availableEdges := AvailableEdges(*curRoute, g.GetEdgeWithStartV(curVertex))
+			if len(availableEdges) != 0 {
+				temp := &Route{}
+				temp.CopyConstructorRoute(curRoute)
+				for i, e := range availableEdges {
+					if i > 0 {
+						temp.CopyRoute(curRoute)
+					}
+					temp.InsertLastVertex(e.endVertex)
+					temp.accWeight += e.weight
+					temp.aStarDistance = e.endVertex.calculateDistance(*goalVertex)
+					q.Enqueue(*temp)
+				}
+			}
+			q.SortAStarAscending()
+			count++
+		}
+
+		// Checking if solution found
+		if !check {
+			fmt.Println("No Solution Found")
+		} else {
+			s.solRoute.CopyConstructorRoute(curRoute)
+		}
 	}
 }
 
@@ -133,4 +143,32 @@ func (s *Solver) DisplaySolutionRoute() {
 
 func IsSolution(r Route, endVKey string) bool {
 	return r.GetLastVertex().key == endVKey
+}
+
+func (s* Solver) SolutionRouteToString () string {
+	var result string
+	for i := 0 ; i < s.solRoute.nVertex; i++ {
+		if i == s.solRoute.nVertex -1 {
+			result = result + "(" + s.solRoute.buffer[i].key +")"
+		} else {
+			result = result + "("+ s.solRoute.buffer[i].key +") -> "
+		}
+	}
+	return result
+}
+
+func (s *Solver) GetSolutionNodes() int {
+	return s.solRoute.nVertex
+}
+
+func (s *Solver) GetSolutionCost() float64 {
+	return (s.solRoute.accWeight)
+}
+
+func (s *Solver) ResetSolver () {
+	s.solRoute = Route{}
+}
+
+func (s *Solver) GetSolutionRoute() Route {
+	return s.solRoute
 }

@@ -79,6 +79,5 @@ func AskUserStartEndVertices () (string, string) {
 	fmt.Print("What is the name of the end Vertex: ")
 	fmt.Scanln(&endV)
 	return startV, endV
-
 }
 

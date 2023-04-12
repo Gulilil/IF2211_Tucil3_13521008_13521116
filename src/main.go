@@ -1,6 +1,7 @@
 package main
 
 import (
+	"RoutePlanner/src/backend"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -9,6 +10,8 @@ import (
 )
 
 type Data struct {
+	Algorithm string
+	FileName string
 	Vertices string
 	Solution string
 	TotalNodes int
@@ -58,16 +61,34 @@ func processHandler(w http.ResponseWriter, r *http.Request) {
 		var start = r.FormValue("startV")
 		var end = r.FormValue("endV")
 
+		g := &backend.Graph{}
+		s := &backend.Solver{}
+
 		fmt.Println(algo)
 		fmt.Println(file)
 		fmt.Println(start)
 		fmt.Println(end)
 
+		root,_ := os.Getwd()
+		absPath := path.Join(root, "test", file)
+
+		g = backend.ReadFileToGraph(absPath)
+		if (algo == "ucs"){
+			s.SolveUCS(*g, start, end)
+		} else {
+			s.SolveAStar(*g, start, end)
+		}
+		g.VisualizeGraph(s.GetSolutionRoute())
+		var verticesBuffer string = g.GraphVerticesToString()
+		var solutionBuffer string = s.SolutionRouteToString()
+
 		var data = Data {
-			Vertices : start,
-			Solution : end,
-			TotalNodes: 0,
-			TotalCost: 0,
+			Algorithm : algo,
+			FileName : file,
+			Vertices : verticesBuffer,
+			Solution : solutionBuffer,
+			TotalNodes: s.GetSolutionNodes(),
+			TotalCost: int(s.GetSolutionCost()),
 		}
 
 		if err := tmpl.Execute(w, data); err != nil {

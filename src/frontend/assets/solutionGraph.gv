@@ -1,0 +1,44 @@
+strict graph {
+
+
+	"Istanbul" [  weight=0 ];
+
+	"Istanbul" -- "Moscow" [ color="black", label="7.00",  weight=0 ];
+
+	"Istanbul" -- "Paris" [ color="black", label="15.00",  weight=0 ];
+
+	"Istanbul" -- "Rome" [ color="black", label="3.00",  weight=0 ];
+
+	"Istanbul" -- "Berlin" [ color="black", label="9.00",  weight=0 ];
+
+	"Moscow" [  weight=0 ];
+
+	"Moscow" -- "Istanbul" [ color="black", label="7.00",  weight=0 ];
+
+	"London" [  weight=0 ];
+
+	"London" -- "Paris" [ color="black", label="4.00",  weight=0 ];
+
+	"Paris" [  weight=0 ];
+
+	"Paris" -- "London" [ color="black", label="4.00",  weight=0 ];
+
+	"Paris" -- "Rome" [ color="black", label="7.00",  weight=0 ];
+
+	"Paris" -- "Istanbul" [ color="black", label="15.00",  weight=0 ];
+
+	"Rome" [  weight=0 ];
+
+	"Rome" -- "Berlin" [ color="black", label="10.00",  weight=0 ];
+
+	"Rome" -- "Istanbul" [ color="black", label="3.00",  weight=0 ];
+
+	"Rome" -- "Paris" [ color="black", label="7.00",  weight=0 ];
+
+	"Berlin" [  weight=0 ];
+
+	"Berlin" -- "Rome" [ color="black", label="10.00",  weight=0 ];
+
+	"Berlin" -- "Istanbul" [ color="black", label="9.00",  weight=0 ];
+
+}
