@@ -1,0 +1,166 @@
+{{define "result"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta http-equiv="refresh" content="3" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href= static/output.css>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/icon_type" hred="static/graph.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Route Planner</title>
+  </head>
+
+  <body
+    class="flex flex-col justify-center items-center bg-[#202020] h-screen gap-5"
+  >
+    <!-- Above -->
+    <div class="w-10/12 h-2/3 flex flex-row justify-center items-center gap-10">
+      <!-- LeftSide -->
+      <div class="flex flex-col justify-center items-center h-full w-full">
+        <!-- Graph Show -->
+        <div
+          class="flex items-center flex-col bg-[#F7F7F7] rounded-xl w-full h-5/6 m-4 p-3 border-x-4 border-[#616571]"
+        >
+          <h1 class="text-[#202020] text-2xl my-1">Graph</h1>
+          <!-- <img class= "w-auto h-5/6" src="static/background.jpg"/> -->
+        </div>
+        <!-- Title -->
+        <h1 class="sm:text-3xl lg:text-5xl drop-shadow-md shadow-white mt-0.5">
+          <div class="flex flex-row gap-2">
+            <p class="text-[#93DEFF]">Shortest Path with</p>
+            <p class="text-[#F7F7F7]">UCS</p>
+            <p class="text-[#93DEFF]">and</p>
+            <p class="text-[#F7F7F7]">A*</p>
+          </div>
+        </h1>
+      </div>
+
+      <!-- RightSide -->
+      <div
+        class="flex flex-col justify-center items-center bg-[#93DEFF] border-4 border-white rounded-xl py-3 pt-1 pb-4 w-1/3 h-full drop-shadow-md"
+      >
+        <img src="static/graph.png" class="w-1/3 h-auto mb-4" />
+        <form
+          method="post"
+          action="/result"
+          class="flex flex-col justify-center items-center gap-3"
+        >
+          <!-- FileInput -->
+          <div class="flex flex-col justify-center items-center">
+            <h1 class="text-[#202020] text-2xl mb-1">File Input</h1>
+            <input class="hidden" type="file" id="myfile" name="myfile" />
+            <label for="myfile">
+              <h1
+                class="text-[#616571] bg-[#F7F7F7] border-2 border-[#656171] py-1 px-3 rounded-2xl hover:text-[#F7F7F7] hover:bg-[#616571]"
+              >
+                Choose
+              </h1>
+            </label>
+          </div>
+          <!-- Solving Method -->
+          <div class="flex flex-col justify-center items-center">
+            <h1 class="text-[#202020] text-2xl mb-1">Solving Method</h1>
+
+            <div class="flex flex-row gap-2 bg-[#F7F7F7] p-1 rounded-xl">
+              <input type="radio" id="ucs" name="algoritma" value="ucs" />
+              <label for="ucs"><h1>UCS</h1></label>
+              <input type="radio" id="astar" name="algoritma" value="astar" />
+              <label for="astar"><h1>A*</h1></label>
+            </div>
+          </div>
+          <!-- Vertex Choose -->
+          <div class="flex flex-row justify-center gap-3">
+            <label for="startV"><h1>Start Vertex</h1></label>
+            <input
+              type="text"
+              placeholder="Insert here"
+              id="startV"
+              name="startV"
+              required
+            />
+          </div>
+          <div class="flex flex-row justify-center gap-5">
+            <label for="endV"><h1>End Vertex</h1> </label>
+            <input
+              type="text"
+              placeholder="Insert here"
+              id="endV"
+              name="endV"
+              required
+            />
+          </div>
+          <button type="submit" id="solve" class="mx-auto w-1/2 mt-2">
+            <h1
+              class="text-[#616571] bg-[#F7F7F7] border-4 border-[#656171] py-3 px-6 rounded-3xl hover:text-[#F7F7F7] hover:bg-[#616571]"
+            >
+              Solve
+            </h1>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Below  -->
+    <div class="flex lg:flex-row w-10/12 h-1/4 bg-[#616571] rounded-xl">
+      <!-- Left Side  -->
+      <div
+        class="flex flex-col justify-center bg-[#93DEFF] border-4 border-white rounded-xl p-3 w-1/2 h-full gap-3 drop-shadow-md"
+      >
+        <!-- Description -->
+        <div
+          class="flex flex-col justify-start items-start w-1/2 h-full text-[#202020] py-3 px-5"
+        >
+          <h1 class="text-xl">Vertices:</h1>
+          <div
+            class="w-full break-normal text-[#202020] bg-[#F7F7F7] px-2 rounded-lg mt-2"
+          >
+            {{$length := len .Vertices}} {{if eq $length 0}}
+            <p>No Vertex Found</p>
+            {{else}}
+            <p>{{.Vertices}}</p>
+            {{end}}
+          </div>
+        </div>
+      </div>
+      <!-- Right Side -->
+      <div class="flex flex-row justify-center items-center w-full h-full p-1">
+        <!-- Solution -->
+        <div
+          class="flex flex-col justify-start items-start w-full h-full text-[#F7F7F7] py-1 px-5"
+        >
+          <h1 class="text-lg">Path:</h1>
+          <div
+            class="w-full break-normal mb-3 text-[#202020] bg-[#F7F7F7] px-2 rounded-lg mt-1"
+          >
+            {{$solLength := len .Solution}} {{ if eq $solLength 0}}
+            <p>No Solution Found</p>
+            {{ else }}
+            <p>{{.Solution}}</p>
+            {{ end }}
+          </div>
+
+          <h1 class="flex flex-row text-lg gap-5 my-1">
+            <p>Total of Nodes:</p>
+            <p class="text-[#202020] bg-[#F7F7F7] px-2 rounded-lg">
+              {{.TotalNodes}}
+            </p>
+          </h1>
+          <h1 class="flex flex-row text-lg gap-5">
+            <p>Total Cost:</p>
+            <p class="text-[#202020] bg-[#F7F7F7] px-2 rounded-lg">
+              {{.TotalCost}}
+            </p>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{{end}}
