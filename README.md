@@ -12,7 +12,7 @@
 * [Author](#author)
 
 ## **Program Description**
-
+This program is a shortest-path finder for traversal graphs by implementing the uniform cost search (UCS) and A-Star (A*) algorithm for solving. The graph used by the program will be inputted from a .txt file. Users can customize the graph in the .txt file. After inputting the file, users can choose which algorithm they want to use to find the path. Users also can determine the desired start and end of the vertex they want to search. The user will get the visualization of the graph, the path from start to end of the vertex, the total of nodes, and the total of cost.
 
 ## **Required Program**
 | Required Program | Reference Link|
