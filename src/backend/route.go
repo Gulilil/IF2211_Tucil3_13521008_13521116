@@ -3,9 +3,9 @@ package backend
 import "fmt"
 
 type Route struct {
-	buffer    []*Vertex
-	nVertex   int
-	accWeight float64
+	buffer        []*Vertex
+	nVertex       int
+	accWeight     float64
 	aStarDistance float64
 }
 
@@ -34,7 +34,7 @@ func (r *Route) IsLessWeight(r2 Route) bool {
 }
 
 func (r *Route) IsAStarLess(r2 Route) bool {
-	return r.accWeight + r.aStarDistance < r2.accWeight + r2.aStarDistance
+	return r.accWeight+r.aStarDistance < r2.accWeight+r2.aStarDistance
 }
 
 func (r *Route) CopyConstructorRoute(r2 *Route) {
@@ -58,6 +58,7 @@ func (r *Route) DisplayRoute() {
 	for i := 0; i < r.nVertex; i++ {
 		fmt.Print(r.buffer[i].key, " ")
 	}
-	fmt.Println(" |AccWeight: ",r.accWeight, " |AStarDistance: ", r.aStarDistance)
-
+	println("")
+	fmt.Println("Total of Nodes: ", r.nVertex)
+	fmt.Println("Total of Cost: ", r.accWeight)
 }
