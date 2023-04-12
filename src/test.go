@@ -16,5 +16,4 @@ func main() {
 	s.SolveAStar(*g, start, end)
 	fmt.Print("Solution Route : ")
 	s.DisplaySolutionRoute()
-	fmt.Println(s.GetExecutionTime())
 }

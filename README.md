@@ -50,12 +50,34 @@ cd Tucil3_13521008_13521116
 ## **Folders and Files Description**
 ```bash                             
 ├── doc
-    ├── Tucil3-Stima-2023.pdf
+    ├── Spesifikasi Tucil 3 Stima 2023.pdf
     └── Tucil_13521008_13521116.pdf
+├── node_modules
 ├── src
     ├── frontend
-    └── backend
+        ├── assets
+            ├── graph.png
+            ├── output.css
+            └── style.css
+        └── main.go
+    ├── backend
+        ├── graph.go
+        ├── io.go
+        ├── queue.go
+        ├── route.go
+        └── solver.go
+    └── main.go
 ├── test
+    ├── graph1.txt
+    ├── graph2.txt
+    ├── graph3.txt
+    ├── graph4.txt
+    └── graph5.txt
+├── go.mod
+├── go.sum
+├── package-lock.json
+├── package.json
+├── tailwind.config.js
 └── README.md
 ```
 
