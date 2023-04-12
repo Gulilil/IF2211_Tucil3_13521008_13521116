@@ -1,124 +1,32 @@
 strict graph {
 
 
-	"TarianLangit" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Jakarta" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
 
-	"TarianLangit" -- "Courts" [ color="red", label="0.75",  weight=0 ];
+	"Jakarta" -- "Jakarta" [ color="black", label="3.00",  weight=0 ];
 
-	"TarianLangit" -- "Soya" [ color="black", label="1.63",  weight=0 ];
+	"Jakarta" -- "Bandung" [ color="black", label="7.00",  weight=0 ];
 
-	"TarianLangit" -- "GORTunas" [ color="black", label="1.66",  weight=0 ];
+	"Bandung" [  weight=0 ];
 
-	"Courts" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"Bandung" -- "Surabaya" [ color="black", label="3.00",  weight=0 ];
 
-	"Courts" -- "RumahJason" [ color="black", label="4.14",  weight=0 ];
+	"Bandung" -- "Jakarta" [ color="black", label="7.00",  weight=0 ];
 
-	"Courts" -- "RumahJuan" [ color="black", label="0.79",  weight=0 ];
+	"Bandung" -- "Semarang" [ color="black", label="4.00",  weight=0 ];
 
-	"Courts" -- "Penabur" [ color="black", label="0.86",  weight=0 ];
+	"Semarang" [  weight=0 ];
 
-	"Courts" -- "TarianLangit" [ color="red", label="0.75",  weight=0 ];
+	"Semarang" -- "Bandung" [ color="black", label="4.00",  weight=0 ];
 
-	"Courts" -- "Albertus" [ color="black", label="1.13",  weight=0 ];
+	"Semarang" -- "Surabaya" [ color="black", label="5.00",  weight=0 ];
 
-	"Courts" -- "TitikBeku" [ color="red", label="0.47",  weight=0 ];
+	"Yogyakarta" [  weight=0 ];
 
-	"Penabur" [  weight=0 ];
+	"Surabaya" [  weight=0 ];
 
-	"Penabur" -- "TitikBeku" [ color="black", label="0.66",  weight=0 ];
+	"Surabaya" -- "Bandung" [ color="black", label="3.00",  weight=0 ];
 
-	"Penabur" -- "RumahJason" [ color="black", label="3.39",  weight=0 ];
-
-	"Penabur" -- "RumahJuan" [ color="black", label="0.59",  weight=0 ];
-
-	"Penabur" -- "AsiaTropis" [ color="black", label="0.57",  weight=0 ];
-
-	"Penabur" -- "Albertus" [ color="black", label="0.27",  weight=0 ];
-
-	"Penabur" -- "Courts" [ color="black", label="0.86",  weight=0 ];
-
-	"Soya" [  weight=0 ];
-
-	"Soya" -- "TarianLangit" [ color="black", label="1.63",  weight=0 ];
-
-	"Soya" -- "GORTunas" [ color="black", label="0.19",  weight=0 ];
-
-	"Soya" -- "RumahJuan" [ color="black", label="0.37",  weight=0 ];
-
-	"RumahJason" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"RumahJason" -- "Albertus" [ color="black", label="3.11",  weight=0 ];
-
-	"RumahJason" -- "Courts" [ color="black", label="4.14",  weight=0 ];
-
-	"RumahJason" -- "TitikBeku" [ color="black", label="3.75",  weight=0 ];
-
-	"RumahJason" -- "Penabur" [ color="black", label="3.39",  weight=0 ];
-
-	"RumahJason" -- "AsiaTropis" [ color="black", label="2.77",  weight=0 ];
-
-	"GORTunas" [  weight=0 ];
-
-	"GORTunas" -- "RumahJuan" [ color="black", label="0.53",  weight=0 ];
-
-	"GORTunas" -- "Soya" [ color="black", label="0.19",  weight=0 ];
-
-	"GORTunas" -- "AsiaTropis" [ color="black", label="1.19",  weight=0 ];
-
-	"GORTunas" -- "TarianLangit" [ color="black", label="1.66",  weight=0 ];
-
-	"TitikBeku" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"TitikBeku" -- "Albertus" [ color="black", label="0.87",  weight=0 ];
-
-	"TitikBeku" -- "Courts" [ color="red", label="0.47",  weight=0 ];
-
-	"TitikBeku" -- "RumahJason" [ color="black", label="3.75",  weight=0 ];
-
-	"TitikBeku" -- "RumahJuan" [ color="black", label="0.35",  weight=0 ];
-
-	"TitikBeku" -- "Penabur" [ color="black", label="0.66",  weight=0 ];
-
-	"TitikBeku" -- "AsiaTropis" [ color="black", label="1.09",  weight=0 ];
-
-	"AsiaTropis" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"AsiaTropis" -- "GORTunas" [ color="black", label="1.19",  weight=0 ];
-
-	"AsiaTropis" -- "Albertus" [ color="black", label="0.30",  weight=0 ];
-
-	"AsiaTropis" -- "TitikBeku" [ color="black", label="1.09",  weight=0 ];
-
-	"AsiaTropis" -- "RumahJason" [ color="black", label="2.77",  weight=0 ];
-
-	"AsiaTropis" -- "RumahJuan" [ color="black", label="0.84",  weight=0 ];
-
-	"AsiaTropis" -- "Penabur" [ color="black", label="0.57",  weight=0 ];
-
-	"Albertus" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
-
-	"Albertus" -- "RumahJason" [ color="black", label="3.11",  weight=0 ];
-
-	"Albertus" -- "Penabur" [ color="black", label="0.27",  weight=0 ];
-
-	"Albertus" -- "AsiaTropis" [ color="black", label="0.30",  weight=0 ];
-
-	"Albertus" -- "Courts" [ color="black", label="1.13",  weight=0 ];
-
-	"Albertus" -- "TitikBeku" [ color="black", label="0.87",  weight=0 ];
-
-	"RumahJuan" [  weight=0 ];
-
-	"RumahJuan" -- "Penabur" [ color="black", label="0.59",  weight=0 ];
-
-	"RumahJuan" -- "Soya" [ color="black", label="0.37",  weight=0 ];
-
-	"RumahJuan" -- "AsiaTropis" [ color="black", label="0.84",  weight=0 ];
-
-	"RumahJuan" -- "GORTunas" [ color="black", label="0.53",  weight=0 ];
-
-	"RumahJuan" -- "Courts" [ color="black", label="0.79",  weight=0 ];
-
-	"RumahJuan" -- "TitikBeku" [ color="black", label="0.35",  weight=0 ];
+	"Surabaya" -- "Semarang" [ color="black", label="5.00",  weight=0 ];
 
 }
