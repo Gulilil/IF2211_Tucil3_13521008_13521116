@@ -15,7 +15,7 @@ type Data struct {
 	Vertices string
 	Solution string
 	TotalNodes int
-	TotalCost int
+	TotalCost float64
 }
 
 
@@ -88,7 +88,7 @@ func processHandler(w http.ResponseWriter, r *http.Request) {
 			Vertices : verticesBuffer,
 			Solution : solutionBuffer,
 			TotalNodes: s.GetSolutionNodes(),
-			TotalCost: int(s.GetSolutionCost()),
+			TotalCost: s.GetSolutionCost(),
 		}
 
 		if err := tmpl.Execute(w, data); err != nil {
