@@ -1,32 +1,116 @@
 strict graph {
 
 
-	"Jakarta" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+	"McDDago" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
 
-	"Jakarta" -- "Jakarta" [ color="black", label="3.00",  weight=0 ];
+	"McDDago" -- "KebunBinatang" [ color="black", label="0.92",  weight=0 ];
 
-	"Jakarta" -- "Bandung" [ color="black", label="7.00",  weight=0 ];
+	"McDDago" -- "BormaDago" [ color="black", label="0.96",  weight=0 ];
 
-	"Bandung" [  weight=0 ];
+	"McDDago" -- "SansCo" [ color="black", label="1.29",  weight=0 ];
 
-	"Bandung" -- "Surabaya" [ color="black", label="3.00",  weight=0 ];
+	"McDDago" -- "GedungSate" [ color="black", label="2.10",  weight=0 ];
 
-	"Bandung" -- "Jakarta" [ color="black", label="7.00",  weight=0 ];
+	"Ciwalk" [  weight=0 ];
 
-	"Bandung" -- "Semarang" [ color="black", label="4.00",  weight=0 ];
+	"Ciwalk" -- "KebunBinatang" [ color="black", label="0.64",  weight=0 ];
 
-	"Semarang" [  weight=0 ];
+	"Ciwalk" -- "PVJ" [ color="black", label="2.97",  weight=0 ];
 
-	"Semarang" -- "Bandung" [ color="black", label="4.00",  weight=0 ];
+	"Ciwalk" -- "BormaDago" [ color="black", label="2.60",  weight=0 ];
 
-	"Semarang" -- "Surabaya" [ color="black", label="5.00",  weight=0 ];
+	"PVJ" [  weight=0 ];
 
-	"Yogyakarta" [  weight=0 ];
+	"PVJ" -- "ITB" [ color="black", label="1.64",  weight=0 ];
 
-	"Surabaya" [  weight=0 ];
+	"PVJ" -- "MixueDago" [ color="black", label="0.77",  weight=0 ];
 
-	"Surabaya" -- "Bandung" [ color="black", label="3.00",  weight=0 ];
+	"PVJ" -- "BormaDago" [ color="black", label="2.04",  weight=0 ];
 
-	"Surabaya" -- "Semarang" [ color="black", label="5.00",  weight=0 ];
+	"PVJ" -- "Ciwalk" [ color="black", label="2.97",  weight=0 ];
+
+	"MixueDago" [  weight=0 ];
+
+	"MixueDago" -- "ITB" [ color="black", label="1.53",  weight=0 ];
+
+	"MixueDago" -- "KebunBinatang" [ color="black", label="1.69",  weight=0 ];
+
+	"MixueDago" -- "PVJ" [ color="black", label="0.77",  weight=0 ];
+
+	"MixueDago" -- "GedungSate" [ color="black", label="2.65",  weight=0 ];
+
+	"MixueDago" -- "Baltos" [ color="black", label="2.44",  weight=0 ];
+
+	"KartikaSari" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"KartikaSari" -- "ITB" [ color="red", label="0.63",  weight=0 ];
+
+	"KartikaSari" -- "BormaDago" [ color="black", label="2.43",  weight=0 ];
+
+	"KartikaSari" -- "Baltos" [ color="black", label="0.39",  weight=0 ];
+
+	"BormaDago" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"BormaDago" -- "Ciwalk" [ color="black", label="2.60",  weight=0 ];
+
+	"BormaDago" -- "McDDago" [ color="black", label="0.96",  weight=0 ];
+
+	"BormaDago" -- "PVJ" [ color="black", label="2.04",  weight=0 ];
+
+	"BormaDago" -- "KartikaSari" [ color="black", label="2.43",  weight=0 ];
+
+	"GedungSate" [  weight=0 ];
+
+	"GedungSate" -- "McDDago" [ color="black", label="2.10",  weight=0 ];
+
+	"GedungSate" -- "MixueDago" [ color="black", label="2.65",  weight=0 ];
+
+	"ITB" [ color="2", colorscheme="blues3", fillcolor="1", style="filled",  weight=0 ];
+
+	"ITB" -- "KartikaSari" [ color="red", label="0.63",  weight=0 ];
+
+	"ITB" -- "Baltos" [ color="black", label="0.79",  weight=0 ];
+
+	"ITB" -- "PVJ" [ color="black", label="1.64",  weight=0 ];
+
+	"ITB" -- "MixueDago" [ color="black", label="1.53",  weight=0 ];
+
+	"SansCo" [  weight=0 ];
+
+	"SansCo" -- "McDDago" [ color="black", label="1.29",  weight=0 ];
+
+	"SansCo" -- "RumahMode" [ color="black", label="2.23",  weight=0 ];
+
+	"SansCo" -- "Baltos" [ color="black", label="2.92",  weight=0 ];
+
+	"RumahMode" [  weight=0 ];
+
+	"RumahMode" -- "KebunBinatang" [ color="black", label="1.19",  weight=0 ];
+
+	"RumahMode" -- "SansCo" [ color="black", label="2.23",  weight=0 ];
+
+	"RumahMode" -- "Baltos" [ color="black", label="2.06",  weight=0 ];
+
+	"Baltos" [  weight=0 ];
+
+	"Baltos" -- "KartikaSari" [ color="black", label="0.39",  weight=0 ];
+
+	"Baltos" -- "SansCo" [ color="black", label="2.92",  weight=0 ];
+
+	"Baltos" -- "ITB" [ color="black", label="0.79",  weight=0 ];
+
+	"Baltos" -- "MixueDago" [ color="black", label="2.44",  weight=0 ];
+
+	"Baltos" -- "RumahMode" [ color="black", label="2.06",  weight=0 ];
+
+	"KebunBinatang" [  weight=0 ];
+
+	"KebunBinatang" -- "MixueDago" [ color="black", label="1.69",  weight=0 ];
+
+	"KebunBinatang" -- "RumahMode" [ color="black", label="1.19",  weight=0 ];
+
+	"KebunBinatang" -- "Ciwalk" [ color="black", label="0.64",  weight=0 ];
+
+	"KebunBinatang" -- "McDDago" [ color="black", label="0.92",  weight=0 ];
 
 }
